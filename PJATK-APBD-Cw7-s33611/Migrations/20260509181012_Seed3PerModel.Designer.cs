@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PJATK_APBD_Cw7_s33611.Infrastructure;
 
@@ -11,9 +12,11 @@ using PJATK_APBD_Cw7_s33611.Infrastructure;
 namespace PJATK_APBD_Cw7_s33611.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20260509181012_Seed3PerModel")]
+    partial class Seed3PerModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +51,7 @@ namespace PJATK_APBD_Cw7_s33611.Migrations
 
                     b.HasIndex("ComponentsTypesId");
 
-                    b.ToTable("Components", (string)null);
+                    b.ToTable("Components");
 
                     b.HasData(
                         new
@@ -100,7 +103,7 @@ namespace PJATK_APBD_Cw7_s33611.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ComponentManufacturers", (string)null);
+                    b.ToTable("ComponentManufacturers");
 
                     b.HasData(
                         new
@@ -146,7 +149,7 @@ namespace PJATK_APBD_Cw7_s33611.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ComponentTypes", (string)null);
+                    b.ToTable("ComponentTypes");
 
                     b.HasData(
                         new
@@ -196,7 +199,7 @@ namespace PJATK_APBD_Cw7_s33611.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PCs", (string)null);
+                    b.ToTable("PCs");
 
                     b.HasData(
                         new
@@ -243,7 +246,7 @@ namespace PJATK_APBD_Cw7_s33611.Migrations
 
                     b.HasIndex("ComponentCode");
 
-                    b.ToTable("PCComponents", (string)null);
+                    b.ToTable("PCComponents");
 
                     b.HasData(
                         new

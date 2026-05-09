@@ -34,6 +34,15 @@ public class DatabaseContext(DbContextOptions options) : DbContext(options)
                 Warranty = 1,
                 CreatedAt = new DateTime(2024, 10, 16),
                 Stock = 3
+            },
+            new PC
+            {
+                Id = 3,
+                Name = "YetAnotherPC3",
+                Weight = 50,
+                Warranty = 10,
+                CreatedAt = new DateTime(2011, 3, 22),
+                Stock = 1
             }
         ]);
 
@@ -70,14 +79,21 @@ public class DatabaseContext(DbContextOptions options) : DbContext(options)
                 Id = 1,
                 Abbreviation = "ABR",
                 FullName = "AbbreviationManufacturer",
-                FoundationDate = new DateTime(2015, 1, 5),
+                FoundationDate = new DateTime(2015, 1, 5)
             },
             new ComponentManufacturer
             {
                 Id = 2,
                 Abbreviation = "X1",
                 FullName = "X1Industries",
-                FoundationDate = new DateTime(2001, 11, 9),
+                FoundationDate = new DateTime(2001, 11, 9)
+            },
+            new ComponentManufacturer
+            {
+                Id = 3,
+                Abbreviation = "AMV",
+                FullName = "Amvidia",
+                FoundationDate = new DateTime(1999, 12, 31)
             }
         ]);
 
@@ -93,6 +109,12 @@ public class DatabaseContext(DbContextOptions options) : DbContext(options)
                 Id = 2,
                 Abbreviation = "RAM",
                 Name = "Random Access Memory",
+            },
+            new ComponentType
+            {
+                Id = 3,
+                Abbreviation = "CPU",
+                Name = "Central Processing Unit",
             }
         ]);
 
