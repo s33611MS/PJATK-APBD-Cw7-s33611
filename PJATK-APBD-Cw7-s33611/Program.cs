@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PJATK_APBD_Cw7_s33611.Infrastructure;
+using PJATK_APBD_Cw7_s33611.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddScoped<IPCService, PCService>();
 
 builder.Services.AddDbContext<DatabaseContext>(opt =>
 {
