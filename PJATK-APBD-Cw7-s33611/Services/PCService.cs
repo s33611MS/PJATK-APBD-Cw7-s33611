@@ -97,6 +97,13 @@ public class PCService(DatabaseContext ctx) : IPCService
 
     public async Task DeletePCAsync(int id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        int affectedRows = await ctx.PCs
+            .Where(pc => pc.Id == id)
+            .ExecuteDeleteAsync(cancellationToken);
+        
+        if (affectedRows == 0)
+        {
+            throw new NotFoundException($"There is no PC with id: {id}");
+        }
     }
 }
