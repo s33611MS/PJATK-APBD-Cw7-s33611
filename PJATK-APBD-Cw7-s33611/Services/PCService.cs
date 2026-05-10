@@ -79,7 +79,20 @@ public class PCService(DatabaseContext ctx) : IPCService
 
     public async Task UpdatePCAsync(int id, UpdatePCDto request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        int affectedRows = await ctx.PCs.Where(pc => pc.Id == id)
+            .ExecuteUpdateAsync(setters => setters
+                    .SetProperty(pc => pc.Name, request.Name)
+                    .SetProperty(pc => pc.Weight, request.Weight)
+                    .SetProperty(pc => pc.Warranty, request.Warranty)
+                    .SetProperty(pc => pc.CreatedAt, request.CreatedAt)
+                    .SetProperty(pc => pc.Stock, request.Stock),
+                cancellationToken
+            );
+
+        if (affectedRows == 0)
+        {
+            throw new NotFoundException($"There is no PC with id: {id}");
+        }
     }
 
     public async Task DeletePCAsync(int id, CancellationToken cancellationToken)

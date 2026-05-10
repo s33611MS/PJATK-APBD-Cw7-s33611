@@ -47,4 +47,18 @@ public class PCsController(IPCService service) : ControllerBase
         var pc = await service.AddPCAsync(request, cancellationToken);
         return CreatedAtAction(nameof(GetPCById), new { id = pc.Id }, pc);
     }
+    
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> UpdatePC([FromRoute] int id, [FromBody] UpdatePCDto request, CancellationToken cancellationToken)
+    {
+        try
+        {
+            await service.UpdatePCAsync(id, request, cancellationToken);
+            return NoContent();
+        }
+        catch (NotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
+    }
 }
