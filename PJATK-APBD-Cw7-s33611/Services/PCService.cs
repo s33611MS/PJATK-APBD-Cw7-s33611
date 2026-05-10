@@ -2,14 +2,15 @@
 using PJATK_APBD_Cw7_s33611.DTOs;
 using PJATK_APBD_Cw7_s33611.Exceptions;
 using PJATK_APBD_Cw7_s33611.Infrastructure;
+using PJATK_APBD_Cw7_s33611.Models;
 
 namespace PJATK_APBD_Cw7_s33611.Services;
 
 public class PCService(DatabaseContext ctx) : IPCService
 {
-    public async Task<IEnumerable<PCListDto>> GetPCsAsync(CancellationToken cancellationToken)
+    public async Task<IEnumerable<PCResponseDto>> GetPCsAsync(CancellationToken cancellationToken)
     {
-        return await ctx.PCs.Select(pc => new PCListDto(
+        return await ctx.PCs.Select(pc => new PCResponseDto(
             pc.Id,
             pc.Name,
             pc.Weight,
@@ -17,6 +18,21 @@ public class PCService(DatabaseContext ctx) : IPCService
             pc.CreatedAt,
             pc.Stock
         )).ToListAsync(cancellationToken);
+    }
+
+    public async Task<PCResponseDto> GetPCByIdAsync(int id, CancellationToken cancellationToken)
+    {
+        return await ctx.PCs
+            .Where(pc => pc.Id ==  id)
+            .Select(pc => new PCResponseDto(
+            pc.Id,
+            pc.Name,
+            pc.Weight,
+            pc.Warranty,
+            pc.CreatedAt,
+            pc.Stock
+        )).FirstOrDefaultAsync(cancellationToken)
+            ?? throw new NotFoundException($"There is no PC with id: {id}");
     }
 
     public async Task<IEnumerable<PCComponentsListDto>> GetPCsComponentsByIdAsync(int id, CancellationToken cancellationToken)
@@ -44,9 +60,21 @@ public class PCService(DatabaseContext ctx) : IPCService
                    )).ToListAsync(cancellationToken);
     }
 
-    public async Task<PCListDto> AddPCAsync(CreatePCDto request, CancellationToken cancellationToken)
+    public async Task<PCResponseDto> AddPCAsync(CreatePCDto request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var PC = new PC
+        {
+            Name = request.Name,
+            Weight = request.Weight,
+            Warranty = request.Warranty,
+            CreatedAt = request.CreatedAt,
+            Stock = request.Stock
+        };
+
+        ctx.Add(PC);
+        await ctx.SaveChangesAsync(cancellationToken);
+        
+        return new (PC.Id, PC.Name, PC.Weight, PC.Warranty, request.CreatedAt, request.Stock);
     }
 
     public async Task UpdatePCAsync(int id, UpdatePCDto request, CancellationToken cancellationToken)

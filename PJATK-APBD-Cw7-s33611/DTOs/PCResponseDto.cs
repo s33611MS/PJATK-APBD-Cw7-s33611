@@ -1,6 +1,6 @@
 ﻿namespace PJATK_APBD_Cw7_s33611.DTOs;
 
-public record PCListDto(
+public record PCResponseDto(
     int Id,
     string Name,
     float Weight,
