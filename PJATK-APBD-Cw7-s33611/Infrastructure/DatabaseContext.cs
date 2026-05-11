@@ -6,8 +6,8 @@ namespace PJATK_APBD_Cw7_s33611.Infrastructure;
 
 public class DatabaseContext(DbContextOptions options) : DbContext(options)
 {
-    public DbSet<PC> PCs { get; set; }
-    public DbSet<PCComponent> PCComponents { get; set; }
+    public DbSet<Pc> Pcs { get; set; }
+    public DbSet<PcComponent> PcComponents { get; set; }
     public DbSet<Component> Components { get; set; }
     public DbSet<ComponentManufacturer> ComponentManufacturers { get; set; }
     public DbSet<ComponentType> ComponentTypes { get; set; }
@@ -16,8 +16,8 @@ public class DatabaseContext(DbContextOptions options) : DbContext(options)
     {
         base.OnModelCreating(modelBuilder);
         
-        modelBuilder.Entity<PC>().HasData([
-            new PC
+        modelBuilder.Entity<Pc>().HasData([
+            new Pc
             {
                 Id = 1,
                 Name = "SomePC1",
@@ -26,7 +26,7 @@ public class DatabaseContext(DbContextOptions options) : DbContext(options)
                 CreatedAt = new DateTime(2026, 5, 9),
                 Stock = 10
             },
-            new PC
+            new Pc
             {
                 Id = 2,
                 Name = "SomeOtherPC2",
@@ -35,7 +35,7 @@ public class DatabaseContext(DbContextOptions options) : DbContext(options)
                 CreatedAt = new DateTime(2024, 10, 16),
                 Stock = 3
             },
-            new PC
+            new Pc
             {
                 Id = 3,
                 Name = "YetAnotherPC3",
@@ -79,21 +79,21 @@ public class DatabaseContext(DbContextOptions options) : DbContext(options)
                 Id = 1,
                 Abbreviation = "ABR",
                 FullName = "AbbreviationManufacturer",
-                FoundationDate = new DateTime(2015, 1, 5)
+                FoundationDate = new DateOnly(2015, 1, 5)
             },
             new ComponentManufacturer
             {
                 Id = 2,
                 Abbreviation = "X1",
                 FullName = "X1Industries",
-                FoundationDate = new DateTime(2001, 11, 9)
+                FoundationDate = new DateOnly(2001, 11, 9)
             },
             new ComponentManufacturer
             {
                 Id = 3,
                 Abbreviation = "AMV",
                 FullName = "Amvidia",
-                FoundationDate = new DateTime(1999, 12, 31)
+                FoundationDate = new DateOnly(1999, 12, 31)
             }
         ]);
 
@@ -118,22 +118,22 @@ public class DatabaseContext(DbContextOptions options) : DbContext(options)
             }
         ]);
 
-        modelBuilder.Entity<PCComponent>().HasData([
-            new PCComponent
+        modelBuilder.Entity<PcComponent>().HasData([
+            new PcComponent
             {
-                PCId = 1,
+                PcId = 1,
                 ComponentCode =  "MOBO123456",
                 Amount = 1
             },
-            new PCComponent
+            new PcComponent
             {
-                PCId = 1,
+                PcId = 1,
                 ComponentCode =  "RAM1234567",
                 Amount = 2
             },
-            new PCComponent
+            new PcComponent
             {
-                PCId = 2,
+                PcId = 2,
                 ComponentCode =  "MOBO098765",
                 Amount = 1
             }

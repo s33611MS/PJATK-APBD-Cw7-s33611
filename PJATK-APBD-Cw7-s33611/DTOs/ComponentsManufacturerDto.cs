@@ -5,5 +5,5 @@ public record ComponentsManufacturerDto
     int Id,
     string Abbreviation,
     string FullName,
-    DateTime FoundationDate
+    DateOnly FoundationDate
 );

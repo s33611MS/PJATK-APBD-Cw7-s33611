@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddScoped<IPCService, PCService>();
+builder.Services.AddScoped<IPcService, PcService>();
 
 builder.Services.AddDbContext<DatabaseContext>(opt =>
 {

@@ -4,16 +4,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PJATK_APBD_Cw7_s33611.Models;
 
-[Table("PCComponents"), PrimaryKey(nameof(PCId), nameof(ComponentCode))]
-public class PCComponent
+[Table("PCComponents"), PrimaryKey(nameof(PcId), nameof(ComponentCode))]
+public class PcComponent
 {
-    public int PCId { get; set; }
+    public int PcId { get; set; }
     [Column(TypeName =  "char(10)")]
     public string ComponentCode { get; set; } = string.Empty;
     public int Amount { get; set; }
     
-    [ForeignKey(nameof(PCId))]
-    public PC PC { get; set; } = null!;
+    [ForeignKey(nameof(PcId))]
+    public Pc Pc { get; set; } = null!;
     
     [ForeignKey(nameof(ComponentCode))]
     public Component Component { get; set; } = null!;

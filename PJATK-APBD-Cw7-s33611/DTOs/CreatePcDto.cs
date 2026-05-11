@@ -1,6 +1,6 @@
 ﻿namespace PJATK_APBD_Cw7_s33611.DTOs;
 
-public record CreatePCDto(
+public record CreatePcDto(
     string Name,
     float Weight,
     int Warranty,

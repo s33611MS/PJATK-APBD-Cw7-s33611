@@ -20,5 +20,5 @@ public class Component
     [ForeignKey(nameof(ComponentsTypesId))]
     public ComponentType ComponentType { get; set; } = null!;
     
-    public IEnumerable<PCComponent> PCComponents { get; set; } = [];
+    public IEnumerable<PcComponent> PcComponents { get; set; } = [];
 }

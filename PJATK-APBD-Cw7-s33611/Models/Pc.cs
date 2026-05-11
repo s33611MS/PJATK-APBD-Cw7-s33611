@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace PJATK_APBD_Cw7_s33611.Models;
 
 [Table("PCs")]
-public class PC
+public class Pc
 {
     [Key]
     public int Id { get; set; }
@@ -15,5 +15,5 @@ public class PC
     public int Warranty { get; set; }
     public DateTime CreatedAt { get; set; }
     public int Stock { get; set; }
-    public IEnumerable<PCComponent> PCComponents { get; set; } = [];
+    public IEnumerable<PcComponent> PcComponents { get; set; } = [];
 }
